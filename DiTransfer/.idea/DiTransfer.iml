@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/di-transfer/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/di-transfer/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/di-transfer/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/di-transfer/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/brick/math" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/carbonphp/carbon-doctrine-types" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/dflydev/dot-access-data" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/dragonmantank/cron-expression" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/egulias/email-validator" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/fakerphp/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/filp/whoops" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/fruitcake/php-cors" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/graham-campbell/result-type" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/guzzlehttp/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/guzzlehttp/promises" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/guzzlehttp/uri-template" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/laravel/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/laravel/pail" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/laravel/pint" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/laravel/prompts" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/laravel/sail" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/laravel/serializable-closure" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/laravel/tinker" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/league/commonmark" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/league/config" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/league/flysystem-local" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/league/mime-type-detection" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/mockery/mockery" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/myclabs/deep-copy" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/nesbot/carbon" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/nette/schema" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/nette/utils" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/nunomaduro/collision" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/nunomaduro/termwind" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/phar-io/manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/phar-io/version" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/phpoption/phpoption" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/phpunit/php-code-coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/phpunit/php-file-iterator" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/phpunit/php-invoker" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/phpunit/php-text-template" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/phpunit/php-timer" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/phpunit/phpunit" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/psr/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/psr/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/psr/http-client" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/psy/psysh" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/ralouphie/getallheaders" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/ramsey/collection" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/ramsey/uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/cli-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/code-unit" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/code-unit-reverse-lookup" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/comparator" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/complexity" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/environment" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/global-state" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/lines-of-code" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/object-enumerator" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/object-reflector" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/recursion-context" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/type" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/css-selector" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/error-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/event-dispatcher-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/http-foundation" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/http-kernel" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/mailer" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/polyfill-intl-grapheme" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/polyfill-intl-idn" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/polyfill-intl-normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/polyfill-php83" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/polyfill-uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/process" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/routing" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/string" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/translation" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/translation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/uid" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/var-dumper" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/theseer/tokenizer" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/tijsverkoyen/css-to-inline-styles" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/vlucas/phpdotenv" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/voku/portable-ascii" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/cloudinary-labs/cloudinary-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/cloudinary/cloudinary_php" />
+      <excludeFolder url="file://$MODULE_DIR$/di-transfer/vendor/cloudinary/transformation-builder-sdk" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

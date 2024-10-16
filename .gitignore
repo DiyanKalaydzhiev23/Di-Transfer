@@ -1,8 +1,8 @@
 # CakePHP 3
-
+docker-compose.yml
 /vendor/*
 /config/app.php
-
+.env
 /tmp/cache/models/*
 !/tmp/cache/models/empty
 /tmp/cache/persistent/*
