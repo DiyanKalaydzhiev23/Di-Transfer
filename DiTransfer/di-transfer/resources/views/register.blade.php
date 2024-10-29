@@ -7,7 +7,6 @@
     <div class="inner">
         <img src="/images/image-1.png" alt="" class="image-1">
         <form action="">
-            <h3 class="new-account-header">New Account?</h3>
             <div class="form-holder">
                 <span class="lnr lnr-user"></span>
                 <input type="text" class="form-control" placeholder="Username">
@@ -34,6 +33,5 @@
         </form>
         <img src="{{ asset('images/image-2.png') }}" alt="" class="image-2">
     </div>
-
 </div>
 @endsection

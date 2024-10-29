@@ -14,3 +14,6 @@ Route::get('/register', function () {
     return view('register');
 });
 
+Route::get('/upload', function () {
+    return view('upload');
+});
