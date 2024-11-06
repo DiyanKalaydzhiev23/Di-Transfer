@@ -8,7 +8,7 @@
         <img src="/images/image-1.png" alt="" class="image-1">
         <form method="post">
             @csrf
-            <h3 class="log-in-header">Create an account?</h3>
+            <h3 class="log-in-header">Create an account</h3>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

@@ -18,6 +18,22 @@ Route::get('/register', function () {
 });
 
 
+Route::post('/login', function (Request $request) {
+    $credentials = $request->validate([
+        'name' => 'required|string|max:255',
+        'password' => 'required|string',
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect()->intended('/upload'); // Redirect to upload or intended page
+    }
+
+    return back()->withErrors([
+        'email' => 'The provided credentials do not match our records.',
+    ]);
+});
+
 Route::post('/register', function (Request $request) {
     $request->validate([
         'name' => 'required|string|max:255',
