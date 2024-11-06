@@ -6,7 +6,8 @@
     <div class="wrapper">
         <div class="inner">
             <img src="/images/image-1.png" alt="" class="image-1">
-            <form action="">
+            <form method="POST" enctype="multipart/form-data">
+                @csrf
                 <div id="file-list" class="flex flex-col space-y-2 text-sm overflow-y-auto max-h-64 overflow-x-auto mb-2 max-w-full pr-2">
                     <!-- File items will be appended here -->
                 </div>
@@ -20,7 +21,7 @@
                             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">(You can attach multiple files)</p>
                         </div>
-                        <input id="dropzone-file" type="file" class="hidden" onchange="addFiles(event)" />
+                        <input id="dropzone-file" type="file" class="hidden" name="files[]" multiple onchange="addFiles(event)" />
                     </label>
                 </div>
 
@@ -30,7 +31,7 @@
                             Oops!
                         </div>
                         <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-                            <p>Hey, memory costs money. That file was to big.</p>
+                            <p>Hey, memory costs money. That file was too big.</p>
                         </div>
                     </div>
                     <div class="progress-bar flex justify-between mt-5 mr-1">
@@ -42,7 +43,7 @@
                     </div>
                 </div>
 
-                <button>
+                <button type="submit">
                     <span>Get a link</span>
                 </button>
             </form>
@@ -75,7 +76,7 @@
                 icon.alt = 'Verified';
                 icon.classList.add('inline-block', 'w-4', 'h-4', '-mt-1', 'mr-2');
 
-                line.classList.add('bg-gray-100', 'min-h-0.5')
+                line.classList.add('bg-gray-100', 'min-h-0.5');
                 fileItem.textContent = file.name;
                 fileItem.classList.add('rounded', 'whitespace-nowrap');
                 fileItem.prepend(icon);
@@ -119,5 +120,30 @@
             const usedSpacePercentage = ((MAX_SPACE_BYTES - spaceLeftBytes) / MAX_SPACE_BYTES) * 100;
             progressBar.style.width = `${usedSpacePercentage}%`;
         }
+
+        document.querySelector('form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+
+            // Append each selected file to the FormData object
+            selectedFiles.forEach(file => formData.append('files[]', file));
+
+            // Send the files via fetch
+            try {
+                const response = await fetch('/upload-files', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                    },
+                    body: formData,
+                });
+
+                const result = await response.json();
+                console.log(result);
+            } catch (error) {
+                console.error('Error uploading files:', error);
+            }
+        });
     </script>
 @endsection
