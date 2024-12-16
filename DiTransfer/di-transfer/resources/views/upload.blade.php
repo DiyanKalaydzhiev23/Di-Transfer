@@ -3,10 +3,15 @@
 @section('title', 'Upload | DiTransfer')
 
 @section('content')
+    <script src="{{ asset('js/file_add_handling.js') }}"></script>
+    <script src="{{ asset('js/zip_creation.js') }}"></script>
+    <script src="{{ asset('js/zip_upload.js') }}"></script>
+    <script src="{{ asset('js/send_cloudinary_url_to_be.js') }}"></script>
+
     <div class="wrapper">
         <div class="inner">
             <img src="/images/image-1.png" alt="" class="image-1">
-            <form method="POST" enctype="multipart/form-data">
+            <form id="upload-form" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div id="file-list" class="flex flex-col space-y-2 text-sm overflow-y-auto max-h-64 overflow-x-auto mb-2 max-w-full pr-2">
                     <!-- File items will be appended here -->
@@ -27,9 +32,7 @@
 
                 <div>
                     <div class="no-space hidden" role="alert">
-                        <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
-                            Oops!
-                        </div>
+                        <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">Oops!</div>
                         <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
                             <p>Hey, memory costs money. That file was too big.</p>
                         </div>
@@ -43,107 +46,13 @@
                     </div>
                 </div>
 
-                <button type="submit">
-                    <span>Get a link</span>
-                </button>
+                <button type="button" onclick="zipAndUpload()">Get a link</button>
             </form>
             <img src="{{ asset('images/image-2.png') }}" alt="" class="image-2">
         </div>
     </div>
 
-    <script>
-        let selectedFiles = [];
-        const MAX_SPACE_GB = 2;
-        const MAX_SPACE_BYTES = MAX_SPACE_GB * 1024 * 1024 * 1024; // Convert GB to bytes
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
 
-        function addFiles(event) {
-            const files = Array.from(event.target.files);
-            selectedFiles = [...selectedFiles, ...files]; // Add new files to existing ones
-            displayFileNames();
-            updateSpaceLeft();
-        }
-
-        function displayFileNames() {
-            const fileList = document.getElementById('file-list');
-            fileList.innerHTML = '';
-
-            selectedFiles.forEach((file, idx) => {
-                const fileItem = document.createElement('div');
-                const line = document.createElement('div');
-                const icon = document.createElement('img');
-
-                icon.src = '/images/verified.png';
-                icon.alt = 'Verified';
-                icon.classList.add('inline-block', 'w-4', 'h-4', '-mt-1', 'mr-2');
-
-                line.classList.add('bg-gray-100', 'min-h-0.5');
-                fileItem.textContent = file.name;
-                fileItem.classList.add('rounded', 'whitespace-nowrap');
-                fileItem.prepend(icon);
-                fileList.appendChild(fileItem);
-
-                if (idx !== selectedFiles.length - 1) {
-                    fileList.appendChild(line);
-                }
-
-                fileList.scrollTop = fileList.scrollHeight;
-            });
-        }
-
-        function updateSpaceLeft() {
-            const totalSize = selectedFiles.reduce((acc, file) => acc + file.size, 0);
-            const spaceLeftBytes = MAX_SPACE_BYTES - totalSize;
-            const spaceLeftGB = (spaceLeftBytes / (1024 * 1024 * 1024)).toFixed(2); // Convert bytes to GB with 2 decimal places
-            const notEnoughSpaceText = document.querySelector('.no-space');
-            const progressBarWrapper = document.querySelector('.progress-bar');
-            const progressBarFilled = document.querySelector('.progress-bar-filled');
-
-            if (spaceLeftBytes < 0) {
-                notEnoughSpaceText.style.display = 'block';
-                progressBarWrapper.style.display = 'none';
-                progressBarFilled.style.display = 'none';
-                selectedFiles.pop(); // Remove the last file
-                displayFileNames();
-                return;
-            } else {
-                progressBarWrapper.style.display = 'flex';
-                notEnoughSpaceText.style.display = 'none';
-                progressBarFilled.style.display = 'flex';
-            }
-
-            // Update the space left text
-            const spaceLeftText = document.getElementById('space-left');
-            spaceLeftText.textContent = `${spaceLeftGB} GB`;
-
-            // Update the progress bar
-            const progressBar = document.getElementById('progress-bar');
-            const usedSpacePercentage = ((MAX_SPACE_BYTES - spaceLeftBytes) / MAX_SPACE_BYTES) * 100;
-            progressBar.style.width = `${usedSpacePercentage}%`;
-        }
-
-        document.querySelector('form').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const formData = new FormData();
-
-            // Append each selected file to the FormData object
-            selectedFiles.forEach(file => formData.append('files[]', file));
-
-            // Send the files via fetch
-            try {
-                const response = await fetch('/upload-files', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
-                    },
-                    body: formData,
-                });
-
-                const result = await response.json();
-                console.log(result);
-            } catch (error) {
-                console.error('Error uploading files:', error);
-            }
-        });
-    </script>
 @endsection

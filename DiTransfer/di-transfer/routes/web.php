@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\Files;
+use App\Http\Controllers\UploadController;
 use App\Models\User;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,7 +13,7 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('register');
@@ -54,42 +54,21 @@ Route::post('/register', function (Request $request) {
 
 Route::get('/upload', function () {
     return view('upload');
-});
+})->middleware('auth');
 
-Route::post('/upload-files', function (Request $request) {
+Route::post('/upload-zip', [UploadController::class, 'uploadZip']);
+
+Route::get('/download-file', function (Request $request) {
     $request->validate([
-        'files.*' => 'required|file|max:2048', // Validates each file individually
+        'path' => 'required|string',
     ]);
 
-    // Create a temporary file for the ZIP archive
-    $zipPath = storage_path('app/temp_upload.zip');
-    $zip = new ZipArchive;
+    $filePath = $request->input('path');
 
-    if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-        // Add each file to the ZIP archive
-        foreach ($request->file('files') as $file) {
-            $zip->addFile($file->getRealPath(), $file->getClientOriginalName());
-        }
-        $zip->close();
-    } else {
-        return response()->json(['error' => 'Could not create ZIP file'], 500);
+    if (!Storage::disk('local')->exists($filePath)) {
+        return response()->json(['error' => 'File not found'], 404);
     }
 
-    // Upload the ZIP file to Cloudinary
-    $uploadedFileUrl = Cloudinary::uploadFile($zipPath)->getSecurePath();
-
-    // Save the ZIP file record in the database
-    $uploadedFile = Files::create([
-        'name' => 'compressed_files.zip',
-        'url' => $uploadedFileUrl,
-    ]);
-
-    // Delete the temporary ZIP file
-    unlink($zipPath);
-
-    return response()->json([
-        'message' => 'Files uploaded successfully as ZIP',
-        'file' => $uploadedFile,
-    ]);
-});
-
+    // Serve the file for download
+    return Storage::disk('local')->download($filePath);
+})->name('download-file');
