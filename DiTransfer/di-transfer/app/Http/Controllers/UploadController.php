@@ -12,7 +12,7 @@ class UploadController extends Controller
         Log::channel('stderr')->debug('Start');
         try {
             $request->validate([
-                'file' => 'required|file|mimes:zip|max:5120000',
+                'file' => 'required|file|mimes:zip',
             ], [
                 'file.required' => 'The file is required. Please upload a ZIP file.',
                 'file.file' => 'The uploaded file is not valid.',

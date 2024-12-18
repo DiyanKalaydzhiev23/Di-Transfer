@@ -9,7 +9,6 @@ async function zipAndUpload() {
         const formData = new FormData();
         formData.append('file', new Blob([zipBlob], { type: 'application/zip' }), 'files.zip');
 
-        // Add CSRF token
         const csrfToken = document.querySelector('input[name="_token"]').value;
         if (!csrfToken) {
             console.error("CSRF token is missing.");
@@ -30,7 +29,7 @@ async function zipAndUpload() {
         xhr.onload = function () {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
-                console.log("Download URL:", response.downloadLink);
+                document.getElementsByClassName('url-placeholder')[0].textContent = response.downloadLink;
             } else {
                 console.error(`Error: ${xhr.status} - ${xhr.statusText}`);
                 console.error("Response:", xhr.responseText);

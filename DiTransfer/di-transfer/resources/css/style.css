@@ -72,6 +72,11 @@ a {
     right: -129px;
 }
 
+.url-placeholder {
+    cursor: pointer;
+    user-select: none;
+}
+
 form {
     width: 100%;
     height: 550px;

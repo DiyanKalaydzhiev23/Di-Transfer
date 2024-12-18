@@ -14,7 +14,6 @@ async function createZip() {
     for (const file of selectedFiles) {
         console.log(`Processing file: ${file.name}, Size: ${file.size} bytes`);
 
-        // Add the whole file to the ZIP archive
         const fileData = await file.arrayBuffer();
         zip.file(file.name, fileData);
 
@@ -24,20 +23,34 @@ async function createZip() {
 
     console.log("All files added to ZIP. Starting compression...");
 
+    const progressBarLeft = document.querySelector(".progress-bar-left-text");
+    const progressBarRight = document.querySelector(".progress-bar-right-text");
+
+    progressBarLeft.textContent = "Zipping file:";
+
     const zipBlob = await zip.generateAsync(
         { type: "blob", streamFiles: true },
         function updateCallback(metadata) {
-            console.log(`Zipping progress: ${metadata.percent.toFixed(2)}%`);
+            progressBarRight.textContent = `${metadata.percent.toFixed(2)}%`;
+            document.getElementById('progress-bar').style.width = `${metadata.percent.toFixed(2)}%`;
         }
     );
 
-    console.log(`ZIP Blob Size: ${zipBlob.size} bytes`);
     if (zipBlob.size === 0) {
         console.error("ZIP creation failed: File is empty.");
         return null;
     }
 
-    console.log("ZIP file created successfully!");
-    console.log(`ZIP Blob Size: ${zipBlob.size} bytes`);
+    const uploadElements = document.querySelectorAll(".upload");
+    const resultElements = document.querySelectorAll(".results");
+
+    uploadElements.forEach(e => {
+        e.style.display = "none";
+    })
+
+    resultElements.forEach(e => {
+        e.style.display = "flex";
+    })
+
     return zipBlob;
 }
