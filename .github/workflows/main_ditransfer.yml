@@ -1,34 +1,45 @@
+name: Build and deploy PHP app to Azure Web App - ditransfer
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
   build:
     runs-on: ubuntu-latest
-
+  
     steps:
       - uses: actions/checkout@v4
-
+  
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-
-      - name: Enter DiTransfer folder
-        run: cd DiTransfer
-
+  
       - name: Check if composer.json exists
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
           files: 'DiTransfer/composer.json'
-
+  
       - name: Update composer.lock
         if: steps.check_files.outputs.files_exists == 'true'
-        run: cd DiTransfer && composer update --no-scripts --no-progress
-
+        run: |
+          composer update --working-dir=DiTransfer --no-scripts --no-progress
+  
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
-        run: cd DiTransfer && composer validate --no-check-publish --quiet && composer install --prefer-dist --no-progress --no-interaction
-
+        run: |
+          composer validate --working-dir=DiTransfer --no-check-publish --quiet
+          composer install --working-dir=DiTransfer --prefer-dist --no-progress --no-interaction
+  
       - name: Zip artifact for deployment
-        run: cd DiTransfer && zip ../release.zip ./* -r
-
+        run: |
+          cd DiTransfer
+          zip ../release.zip ./* -r
+  
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
