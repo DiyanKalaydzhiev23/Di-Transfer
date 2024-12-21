@@ -1,12 +1,3 @@
-name: Build and deploy PHP app to Azure Web App - ditransfer
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
-jobs:
   build:
     runs-on: ubuntu-latest
 
@@ -27,9 +18,13 @@ jobs:
         with:
           files: 'DiTransfer/composer.json'
 
+      - name: Update composer.lock
+        if: steps.check_files.outputs.files_exists == 'true'
+        run: cd DiTransfer && composer update --no-scripts --no-progress
+
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
-        run: cd DiTransfer && composer validate --no-check-publish && composer install --prefer-dist --no-progress
+        run: cd DiTransfer && composer validate --no-check-publish --quiet && composer install --prefer-dist --no-progress --no-interaction
 
       - name: Zip artifact for deployment
         run: cd DiTransfer && zip ../release.zip ./* -r
@@ -39,36 +34,3 @@ jobs:
         with:
           name: php-app
           path: release.zip
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write #This is required for requesting the JWT
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: php-app
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip -d DiTransfer
-
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_377D4A7BD3B54988971CD8FDB7C9B891 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_245C967A6CB24C759BC09A04282633D9 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EE6666B4296E457E9C30DF6C2808DE91 }}
-
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
-        id: deploy-to-webapp
-        with:
-          app-name: 'ditransfer'
-          slot-name: 'Production'
-          package: DiTransfer
